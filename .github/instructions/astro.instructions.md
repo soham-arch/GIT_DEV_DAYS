@@ -19,6 +19,10 @@ import GameCard from '../components/GameCard.astro';
 import { getDatabase } from '../lib/db';
 import { getAllGames } from '../lib/games';
 
+/**
+ * Props for the index page.
+ * @property title - Page title for the browser tab
+ */
 interface Props {
   title: string;
 }
@@ -32,6 +36,8 @@ const games = await getAllGames(getDatabase());
 </Layout>
 ```
 
+**Component Props Documentation**: Each reusable `.astro` component should document its `Props` interface with a JSDoc block describing each property. This makes the component API self-explanatory for other developers and for Copilot.
+
 ## Layouts
 
 - Create reusable layout components in `src/layouts/`
@@ -43,6 +49,10 @@ const games = await getAllGames(getDatabase());
 
 ```astro
 ---
+/**
+ * Props for the main layout.
+ * @property title - Page title for the browser tab
+ */
 interface Props {
   title: string;
 }
@@ -120,3 +130,14 @@ There is no Svelte/React layer. When a page genuinely needs client behaviour, ad
 - Minimize client-side JavaScript — the default is zero JS shipped
 - Import and use global CSS styles from layouts
 - Always include a `data-testid` on interactive elements (see `ui.instructions.md`)
+
+### Comments and Documentation
+
+**Comment Philosophy**: Comments should explain *why* code exists or the reasoning behind non-obvious decisions, not restate what the code already says.
+
+- ✓ Good: `// Static output requires all routes to be enumerable at build time`
+- ✗ Bad: `// Map the games array` (the `.map()` already shows this)
+
+**Keep Comments Current**: Treat outdated comments as bugs — update or delete them when you change related code.
+
+**Props Documentation**: Every `Props` interface in a reusable component must have a JSDoc comment describing each property (see the examples above in Component Structure and Layout Example).

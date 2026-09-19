@@ -68,3 +68,33 @@ Refer to technology-specific instruction files:
    - Test keyboard navigation
    - Check focus states
    - Validate semantic structure
+
+## Code Standards
+
+### Comments and Documentation
+
+**Comment Philosophy**: Comments should explain *why* code exists or the reasoning behind non-obvious decisions, not restate what the code already says. Avoid comments that merely paraphrase the code.
+
+- ✓ Good: `// Dark theme is the default; light mode support is postponed`
+- ✗ Bad: `// Set the title` (the code already shows this)
+- ✗ Bad: `// Loop through items` (the loop structure is obvious)
+
+**Keep Comments Current**: Treat outdated comments as bugs — update or delete them when you change the related code.
+
+**Component Props Documentation**: Each reusable `.astro` component should have a JSDoc comment above its `Props` interface, documenting each property. Example:
+
+```astro
+---
+/**
+ * Props for a reusable button component.
+ * @property label - The button text
+ * @property onClick - Optional click handler
+ */
+interface Props {
+  label: string;
+  onClick?: () => void;
+}
+---
+```
+
+**Function Documentation**: Every exported function in `db/` and `src/lib/` must have a JSDoc comment describing its purpose, parameters, and return type. For data-access helpers with an injectable `db` argument, document the testing pattern. See [`drizzle.instructions.md`](drizzle.instructions.md) for examples.
