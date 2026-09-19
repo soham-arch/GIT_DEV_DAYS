@@ -88,6 +88,23 @@ npm run typecheck:all    # both of the above
 > [!NOTE]
 > The native compiler is used only for type checking (`--noEmit`); the site is still built by `astro build` (Vite/esbuild). The classic `typescript` package stays on v6 until `typescript-eslint` and `@astrojs/check` support the native API (~TS 7.1); a Dependabot `ignore` in `.github/dependabot.yml` holds the classic `typescript@7` bump until then.
 
+## Coding Standards
+
+This project maintains clear, documented conventions for code quality and consistency. All contributors should review these standards before creating code:
+
+- **Comment Philosophy**: Comments explain *why* code exists or the reasoning behind decisions, not *what* the code does. Avoid comments that merely paraphrase the code.
+- **TSDoc/JSDoc**: Every exported function in `db/` and `src/lib/` must have a JSDoc comment describing its purpose, parameters, and return value. For helpers with an injectable `db` argument, document the testing pattern.
+- **Component Props**: Each reusable `.astro` component must document its `Props` interface so the component API is self-explanatory.
+- **Keep Comments Current**: Treat outdated comments as bugs — update or delete them when you change related code.
+
+Detailed guidance is available in the `.github/instructions/` directory:
+- [`.github/instructions/astro.instructions.md`](.github/instructions/astro.instructions.md) — Astro pages, layouts, and components
+- [`.github/instructions/drizzle.instructions.md`](.github/instructions/drizzle.instructions.md) — Data layer patterns and JSDoc requirements
+- [`.github/instructions/ui.instructions.md`](.github/instructions/ui.instructions.md) — UI development strategy and comment standards
+- [`.github/instructions/style.instructions.md`](.github/instructions/style.instructions.md) — Tailwind CSS and styling patterns
+- [`.github/instructions/unit-tests.instructions.md`](.github/instructions/unit-tests.instructions.md) — Vitest testing guidelines
+- [`.github/instructions/playwright.instructions.md`](.github/instructions/playwright.instructions.md) — Playwright E2E testing guidelines
+
 ## Copilot Agents & Skills
 
 This project ships Copilot customizations to assist with quality assurance:
